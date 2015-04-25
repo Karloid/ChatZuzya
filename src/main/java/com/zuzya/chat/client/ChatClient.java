@@ -1,6 +1,9 @@
+package com.zuzya.chat.client;
+
 import java.net.URI;
 import java.util.concurrent.Future;
 
+import com.zuzya.chat.server.ChatServer;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
@@ -12,12 +15,13 @@ public class ChatClient {
 
 		try {
 			client.start();
-			ChatSocket socket = new ChatSocket();
+			ChatClientSocket socket = new ChatClientSocket();
 
 			Future<Session> fut = client.connect(socket, uri);
 			Session session = fut.get();
 			session.getRemote().sendString("Hello World");
-			Thread.sleep(2000);
+			session.getRemote().sendString("How are you?");
+			Thread.sleep(5000);
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,3 +1,5 @@
+package com.zuzya.chat.server;
+
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
@@ -5,6 +7,6 @@ import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 public class ChatServlet extends WebSocketServlet{
 	@Override
 	public void configure(WebSocketServletFactory factory) {
-		factory.register(ChatSocket.class);
+		factory.register(ChatServerSocket.class);
 	}
 }

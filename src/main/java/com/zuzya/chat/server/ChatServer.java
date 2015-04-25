@@ -1,3 +1,5 @@
+package com.zuzya.chat.server;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -37,7 +39,4 @@ public class ChatServer {
 		return port;
 	}
 
-	public static void setPort(int port) {
-		ChatServer.port = port;
-	}
 }

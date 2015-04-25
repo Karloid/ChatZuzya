@@ -1,28 +1,28 @@
+package com.zuzya.chat.client;
+
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
 import java.io.IOException;
 
-public class ChatSocket extends WebSocketAdapter {
+public class ChatClientSocket extends WebSocketAdapter {
 
 	@Override
 	public void onWebSocketConnect(Session sess) {
 		super.onWebSocketConnect(sess);
-		System.out.println("Socket Connected: " + sess);
-		sendString("Welcome");
+		System.out.println("Client socket Connected: " + sess);
 	}
 
 	@Override
 	public void onWebSocketText(String message) {
 		super.onWebSocketText(message);
-		System.out.println("Received TEXT message: " + message);
-		sendString("We received your message");
+		System.out.println("Client receive: " + message);
 	}
 
 	@Override
 	public void onWebSocketClose(int statusCode, String reason) {
 		super.onWebSocketClose(statusCode, reason);
-		System.out.println("Socket Closed: +[" + statusCode + "] " + reason);
+		System.out.println("Client socket Closed: +[" + statusCode + "] " + reason);
 	}
 
 	@Override
