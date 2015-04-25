@@ -17,6 +17,7 @@ public class ChatClient {
 			Future<Session> fut = client.connect(socket, uri);
 			Session session = fut.get();
 			session.getRemote().sendString("Hello World");
+			Thread.sleep(2000);
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
