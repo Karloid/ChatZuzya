@@ -3,7 +3,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-public class ChatServerLauncher {
+public class ChatServer {
 	private static int port = 8081;
 
 	public static void main(String[] args) {
@@ -17,8 +17,8 @@ public class ChatServerLauncher {
 		context.setContextPath("/");
 		server.setHandler(context);
 
-		ServletHolder holderEvents = new ServletHolder("ws-events", EventServlet.class);
-		context.addServlet(holderEvents, "/events/*");
+		ServletHolder holderEvents = new ServletHolder("ws-events", ChatServlet.class);
+		context.addServlet(holderEvents, getChatPath() +"*");
 
 		try {
 			server.start();
@@ -30,11 +30,15 @@ public class ChatServerLauncher {
 
 	}
 
+	public static String getChatPath() {
+		return "/chat/";
+	}
+
 	public static int getPort() {
 		return port;
 	}
 
 	public static void setPort(int port) {
-		ChatServerLauncher.port = port;
+		ChatServer.port = port;
 	}
 }
