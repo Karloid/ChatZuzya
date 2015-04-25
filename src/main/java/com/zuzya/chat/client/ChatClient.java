@@ -1,11 +1,14 @@
 package com.zuzya.chat.client;
 
-import java.net.URI;
-import java.util.concurrent.Future;
-
 import com.zuzya.chat.server.ChatServer;
+import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.Scanner;
+import java.util.concurrent.Future;
 
 public class ChatClient {
 	public static void main(String[] args) {
@@ -19,9 +22,7 @@ public class ChatClient {
 
 			Future<Session> fut = client.connect(socket, uri);
 			Session session = fut.get();
-			session.getRemote().sendString("Hello World");
-			session.getRemote().sendString("How are you?");
-			Thread.sleep(5000);
+			readUserInput(session.getRemote());
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,5 +34,15 @@ public class ChatClient {
 			}
 		}
 
+	}
+
+	private static void readUserInput(RemoteEndpoint remote) throws IOException {
+		Scanner in = new Scanner(System.in);
+		while (true) {
+			String input = in.next();
+			if (input.toUpperCase().equals("EXIT"))
+				break;
+			remote.sendString(input);
+		}
 	}
 }
