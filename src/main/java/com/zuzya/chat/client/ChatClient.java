@@ -33,7 +33,6 @@ public class ChatClient {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	private static void readUserInput(RemoteEndpoint remote) throws IOException {

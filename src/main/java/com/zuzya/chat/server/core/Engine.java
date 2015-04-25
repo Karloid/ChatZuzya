@@ -1,7 +1,5 @@
 package com.zuzya.chat.server.core;
 
-import com.zuzya.chat.server.ChatServerSocket;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class Engine {
 
 	public void addOnNewMessageListener(OnNewMessageListener listener) {
 		if (onNewMessageListeners == null) {
-			onNewMessageListeners = new ArrayList<OnNewMessageListener>();
+			onNewMessageListeners = new ArrayList<>();
 		}
 		onNewMessageListeners.add(listener);
 	}
