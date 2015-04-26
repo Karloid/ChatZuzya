@@ -9,6 +9,8 @@ public class ChatServer {
 	private static int port = 8081;
 
 	public static void main(String[] args) {
+		Utils.setupIp();
+
 		Server server = new Server();
 		ServerConnector connector = new ServerConnector(server);
 		connector.setPort(getPort());
